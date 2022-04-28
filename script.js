@@ -12,7 +12,6 @@ function userPlay(){
     }
     let num = choices.indexOf(userInput.toLowerCase());
     if (num > -1){
-        //console.log(choices[num])
         return choices[num]                                
     }   
 
@@ -22,9 +21,9 @@ function userPlay(){
         while (userInput == null){
             userInput = prompt("Enter rock, paper or scissor")
         }
+        //Make sure userInput is true after the user enters the correct value
         let num = choices.indexOf(userInput.toLowerCase());
         if (num > -1){
-           // console.log(choices[num])
             return choices[num]                                
         }   
             inputCheck = validator(userInput)     
@@ -32,13 +31,13 @@ function userPlay(){
 return userInput
                                            
 }
+//Check if input is valid
 function validator(choice){
     return choices.includes(choice)
 }
 
 function computerPlay(){
     let random = Math.floor(Math.random() * choices.length)
-    //console.log(choices[random])
     return choices[random]
 }
 
@@ -65,7 +64,7 @@ function whoWon(playerSelection, computerSelection){
 
  }
 
- 
+ //Play 5 sets
 function game(){
     for (let i = 1; i <= 5 ; i++) {
         
@@ -82,9 +81,9 @@ console.log("User Won:", playerWins)
 console.log("Computer Won:", computerWins)
 console.log("Ties:", ties)
 //winner after 5 rounds or a tie
-// if(playerWins == computerWins){console.log("Its a Draw after 5 sets")}
-// else if(playerWins > computerWins){ console.log("User wins after 5 sets")}
-// else console.log("Computer wins after 5 sets")
+if(playerWins == computerWins){console.log("Its a Draw after 5 sets")}
+else if(playerWins > computerWins){ console.log("User wins after 5 sets")}
+else console.log("Computer wins after 5 sets")
 
 }
 function singleRounds(userPlay, computerPlay, winner, roundPlayed){
