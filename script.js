@@ -1,81 +1,102 @@
 const choices = ["rock", "paper", "scissor"];
+let winners = []
 // var op1 = "SCISSOR";
 // var op2 = "Rock"
 // var op3 = "Paper";
 
 function userPlay(){
-let userInput = prompt("Enter rock, paper or scissor");
-let num = choices.indexOf(userInput.toLowerCase());
-if (num > -1){
-    console.log(choices[num])
-    return choices[num]                                
-}                                                  
+    let userInput = prompt("Enter rock, paper or scissor");
+    
+    while (userInput == null){
+        userInput = prompt("Enter rock, paper or scissor")
+    }
+    let num = choices.indexOf(userInput.toLowerCase());
+    if (num > -1){
+        //console.log(choices[num])
+        return choices[num]                                
+    }   
+
+    let inputCheck = validator(userInput)
+    while (inputCheck == false){
+        userInput = prompt("Player, Enter rock, paper or scissor")
+        while (userInput == null){
+            userInput = prompt("Enter rock, paper or scissor")
+        }
+        let num = choices.indexOf(userInput.toLowerCase());
+        if (num > -1){
+           // console.log(choices[num])
+            return choices[num]                                
+        }   
+            inputCheck = validator(userInput)     
+    } 
+return userInput
+                                           
+}
+function validator(choice){
+    return choices.includes(choice)
 }
 
 function computerPlay(){
     let random = Math.floor(Math.random() * choices.length)
-    console.log(choices[random])
+    //console.log(choices[random])
     return choices[random]
 }
 
-let computerSelection = computerPlay()
-let playerSelection = userPlay()
 
-function rounds(playerSelection, computerSelection) {
+
+function rounds(roundPlayed) {
+    const computerSelection = computerPlay()
+    const playerSelection = userPlay()
+    const winner = whoWon(playerSelection, computerSelection)
+    winners.push(winner)
+    singleRounds(playerSelection, computerSelection, winner, roundPlayed)
+   
+}
+function whoWon(playerSelection, computerSelection){
     if(playerSelection === computerSelection){
-        return "Its a tie!"
+        return "Tie"
     } 
-    else if(playerSelection === "scissor" && computerSelection === "paper") {
-        return "You Win! scissor beats paper";
+    else if((playerSelection === "scissor" && computerSelection === "paper") || 
+    (playerSelection === "rock" && computerSelection === "scissor") || 
+    (playerSelection === "paper" && computerSelection === "rock") ){
+        return "User"
     }
-    else if(playerSelection === "scissor" && computerSelection === "rock"){
-        return "You Loose! rock beats scissor"
-    }
-    else if(playerSelection === "rock" && computerSelection === "paper"){
-        return "You Loose! paper beats rock"
-    }
-    else if (playerSelection === "rock" && computerSelection === "scissor"){
-        return "You Win! rock bets scissor"
-    }
-    else if(playerSelection === "paper" && computerSelection === "rock"){
-        return "You Win! paper beats rock"
-    }
-    else if (playerSelection === "paper" && computerSelection === "scissor"){
-        return "You Loose! scissor beats paper"
-    }
-    else return "Player, Enter correct values!"                
- }
- 
+    else return "Computer"
 
-// function game(){
-//     let playerWins = []
-//     let computerWins = []
-//     for (let i = 1; i <= 5 ; i++) {
-  
-//         if (rounds(playerSelection, computerSelection) === "Its a tie!") {
-//             return "round tied"
-//         }
-//         else if(rounds(playerSelection, computerSelection) === "You Win! scissor beats paper" || rounds(playerSelection, computerSelection) === "You Win! rock bets scissor" || rounds(playerSelection, computerSelection) === "You Win! paper beats rock") {
-//             playerWins.push(i)
-//             console.log(playerWins)
-//             return "You win round this round"
-//         } 
-//         else if(rounds(playerSelection, computerSelection) === "You Loose! rock beats scissor" || rounds(playerSelection, computerSelection) === "You Loose! paper beats rock" || rounds(playerSelection, computerSelection) === "You Loose! scissor beats paper") {
-//             computerWins.push(i)
-//             console.log(computerWins)
-//             return "Computer wins this round"
-//         }  
-    
-//     }
-//     if (playerWins.length > computerWins.length) {
-//         return "you are the champion"
-//     }
-//     else if(computerWins > playerWins) {
-//         return "computer is the champion"
-//     }
-//     else return "Its a 5 round tie"
-// }
-//function game()
+ }
+
+ 
+function game(){
+    for (let i = 1; i <= 5 ; i++) {
+        
+        rounds(i) 
+    }
+    showWins()
+}
+function showWins(){
+let playerWins = winners.filter(item => item == "User").length
+let computerWins = winners.filter(item => item == "Computer").length
+let ties = winners.filter(item => item == "Tie").length
+console.log("---Game-Over---")
+console.log("User Won:", playerWins)
+console.log("Computer Won:", computerWins)
+console.log("Ties:", ties)
+//winner after 5 rounds or a tie
+// if(playerWins == computerWins){console.log("Its a Draw after 5 sets")}
+// else if(playerWins > computerWins){ console.log("User wins after 5 sets")}
+// else console.log("Computer wins after 5 sets")
+
+}
+function singleRounds(userPlay, computerPlay, winner, roundPlayed){
+console.log("round played:", roundPlayed)
+console.log("User played:", userPlay)
+console.log("Computer played:", computerPlay)
+if(winner == "Tie"){console.log("it's a tie!")}
+else {console.log(winner, "is the winner")
+}
+}
+console.log(game())
+
 
 
 
