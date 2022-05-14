@@ -1,3 +1,5 @@
 # Rock-Paper-Scissors
 Gaming
---> This game is played completely on the console by pressing ctrl + shift + j on Windows/Linux and command + option + j on Mac.
+--> In this game, your oponent is your computer/device.  Choose your weapon of choice i.e Rock , Paper or Scissor to try and win against your opponent.
+--> the game is played and won after a player wins 5 rounds. The game is reset by pressing the 'PLAY AGAIN' button. 
+LET THE GAMES BEGIN!.

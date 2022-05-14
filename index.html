@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
-    
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="winnerDiv">
+        <h1 class="winner"></h1>
+        <button class='reset' onclick="resetGame()">PLAY AGAIN?</button>
+    </div>
+    <div id="buttons">
+        <h3 class="playerSelection"></h3>
+        <h3 class="playerScore">Score: 0</h3>
+        <button id="rock">rock</button>
+        <button id="paper">paper</button>
+        <button id="scissor">scissor</button>
+    </div>
+    <div id="computerS">
+        <h3 class="computerSelection"></h3>
+        <h3 class="computerScore">Score: 0</h3>
+    </div>
+    <div id="tied">
+        <h3 class="ties">Ties: 0</h3>
+    </div>
+
 </body>
 </html>
